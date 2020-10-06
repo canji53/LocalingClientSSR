@@ -1,0 +1,14 @@
+{
+  "name": "render",
+  "version": "1.0.0",
+  "description": "Server Side Render for Localing.",
+  "main": "app.js",
+  "author": "Canji",
+  "license": "MIT",
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}

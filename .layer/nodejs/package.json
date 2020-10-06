@@ -1,0 +1,15 @@
+{
+  "name": "localing-ssr-lambda-layer",
+  "version": "1.0.0",
+  "description": "Lambda Layer for Localing widh SSR",
+  "main": "app.js",
+  "author": "Canji",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {
+    "aws-serverless-express": "^3.3.8",
+    "express": "^4.17.1",
+    "nuxt": "^2.14.6"
+  },
+  "devDependencies": {}
+}
