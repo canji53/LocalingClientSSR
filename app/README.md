@@ -1,1 +1,0 @@
-# Localing with Nuxt.js
