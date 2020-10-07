@@ -52,7 +52,7 @@ jobs:
         run: |
           sam deploy \
             --template-file deploy.yml \
-            --stack-name Localing-$ENVIRONMENT-ssr-api \
+            --stack-name localing-$ENVIRONMENT-ssr-api \
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides \
                 Environment=$ENVIRONMENT \
