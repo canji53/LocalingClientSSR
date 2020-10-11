@@ -63,6 +63,8 @@ jobs:
         run: |
           cd .layer/nodejs
           npm install
+          cd ..
+          find . | xargs touch
 
       - name: Build by SAM
         run: |
