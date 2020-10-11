@@ -1,1 +1,1 @@
-# LocalingSSR
+# LocalingClientSSR
