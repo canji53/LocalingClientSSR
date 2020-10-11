@@ -35,11 +35,20 @@ Resources:
       BinaryMediaTypes:
         - '*/*'
 
-  LambdaLayer:
+  RenderLambdaLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: !Sub ${ServiceName}-${Environment}-ssr-lambda-layer
-      ContentUri: .layer/
+      LayerName: !Sub ${ServiceName}-${Environment}-ssr-layer
+      ContentUri: .layer/render
+      CompatibleRuntimes:
+        - nodejs12.x
+      RetentionPolicy: Delete
+
+  NuxtLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !Sub ${ServiceName}-${Environment}-nuxt-layer
+      ContentUri: .layer/nuxt
       CompatibleRuntimes:
         - nodejs12.x
       RetentionPolicy: Delete
@@ -51,7 +60,8 @@ Resources:
       CodeUri: render/
       Handler: app.handler
       Layers:
-        - !Ref LambdaLayer
+        - !Ref RenderLambdaLayer
+        - !Ref NuxtLambdaLayer
       Timeout: 10
       MemorySize: 256
       Events:
