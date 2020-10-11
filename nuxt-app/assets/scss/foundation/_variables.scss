@@ -1,0 +1,29 @@
+// カードサイズ
+$column-width: 252px;
+$article-width: 600px;
+
+// コラムサイズ（1列, 2列,,,）
+$column1-width: $column-width;
+$column2-width: $column-width * 2;
+$column3-width: $column-width * 3;
+$column4-width: $column-width * 4;
+$column5-width: $column-width * 5;
+$column6-width: $column-width * 6;
+
+// 色
+$base-color: #555;
+$base-thin-color: #5555;
+$accent-color: #86C166;
+$accent-hover-color: #799e65;
+$thin-color: #f0f0f0;
+$link-color: #339AF0;
+
+// フォントサイズ
+$large-font-size: 20px;
+$medium-font-size: 16px;
+$base-font-size: 13px;
+$small-font-size: 11px;
+
+
+//
+$transition-time: .3s;
