@@ -50,6 +50,8 @@ Resources:
       FunctionName: !Sub ${ServiceName}-${Environment}-server-side-render
       CodeUri: render/
       Handler: app.lambdaHandler
+      Layers:
+        - !Ref ServerlessLambdaLayer
       Timeout: 10
       MemorySize: 256
       Events:
