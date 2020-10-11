@@ -1,4 +1,4 @@
-name: Deployment for Localing SSR API.
+name: Deployment for Localing SSR Nuxt App.
 
 on:
   push:
@@ -56,23 +56,22 @@ jobs:
           aws s3 sync .nuxt/dist/client s3://localing-$ENVIRONMENT-static-assets/_nuxt --delete
           aws s3 sync nuxt-app/static s3://localing-$ENVIRONMENT-static-assets/static --delete
 
-      - name: Install npm packages for Lambda Layer
+      - name: Install npm packages for Render Lambda Layer
         run: |
-          cd .layer/nodejs
-          npm install
-          cd ..
-          find . | xargs touch
-
-      - name: Install npm package for dependencies (not dev)
+          rsync render/package.json .layer/render/nodejs
+          cd .layer/render/nodejs
+          npm install --production
+      
+      - name: Install npm packages for Nuxt Lambda Layer
         run: |
-          rm -rf node_modules
+          rsync package.json .layer/nuxt/nodejs
+          cd .layer/nuxt/nodejs
           npm install --production
 
-      - name: Copy to lambda for requirement packages
+      - name: Copy to lambda for requirement files
         run: |
-          cp -r node_modules render/
-          cp -r .nuxt/dist/server render/
-          cp nuxt.config.js render/
+          rsync -Rr　.nuxt/dist/server render/
+          rsync nuxt.config.js render/
 
       - name: Build by SAM
         run: |
