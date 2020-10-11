@@ -71,7 +71,7 @@ jobs:
       - name: Copy to lambda for requirement packages
         run: |
           cp -r node_modules render/
-          cp -r .nuxt/dist/server/* render/
+          cp -r .nuxt/dist/server render/
           cp nuxt.config.js render/
 
       - name: Build by SAM
