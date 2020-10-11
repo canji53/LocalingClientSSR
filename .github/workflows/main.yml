@@ -68,6 +68,11 @@ jobs:
           cd .layer/nuxt/nodejs
           npm install --production
 
+      - name: To avoid ZIP 1980 error
+        run: |
+          cd .layer
+          find . | xargs touch
+
       - name: Copy to lambda for requirement files
         run: |
           rsync -Rr .nuxt/dist/server render/
