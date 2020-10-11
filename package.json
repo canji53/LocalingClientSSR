@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env ENVIRONEMNT=dev nuxt",
     "build": "nuxt build",
     "build:analyze": "nuxt build --analyze",
     "build:dev": "cross-env ENVIRONEMNT=dev npm run build",
@@ -25,6 +25,7 @@
     "@nuxtjs/markdownit": "^1.2.10",
     "@nuxtjs/proxy": "^2.0.1",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "@nuxtjs/style-resources": "^1.0.0",
     "dayjs": "^1.8.34",
     "email-validator": "^2.0.4",
     "nuxt": "^2.14.0",
@@ -35,7 +36,6 @@
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-module": "^2.0.0",
-    "@nuxtjs/style-resources": "^1.0.0",
     "@vue/test-utils": "^1.0.3",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
