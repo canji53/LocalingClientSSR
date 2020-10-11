@@ -49,7 +49,7 @@ Resources:
     Properties:
       FunctionName: !Sub ${ServiceName}-${Environment}-server-side-render
       CodeUri: render/
-      Handler: nuxt-app.lambdaHandler
+      Handler: app.lambdaHandler
       Layers:
         - !Ref LambdaLayer
       Timeout: 10
