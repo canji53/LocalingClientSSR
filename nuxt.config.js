@@ -21,7 +21,6 @@ const eyecatchPath = baseUrl + "/eyecatch.png"
 const iconsDir = "/icons"
 
 export default {
-  mode: "universal",
   target: "server",
   srcDir: srcDir,
   head: {
@@ -195,7 +194,7 @@ export default {
   buildModules: ["@nuxtjs/eslint-module"],
   modules: [
     "@nuxtjs/axios",
-    "@nuxtjs/pwa",
+    // "@nuxtjs/pwa",
     "@nuxtjs/style-resources",
     "nuxt-fontawesome",
     "@nuxtjs/markdownit",
