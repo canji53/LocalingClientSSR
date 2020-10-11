@@ -9,7 +9,7 @@
   "dependencies": {
     "aws-serverless-express": "^3.3.8",
     "express": "^4.17.1",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.0"
   },
   "devDependencies": {}
 }
