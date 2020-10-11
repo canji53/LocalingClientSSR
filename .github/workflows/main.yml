@@ -7,12 +7,12 @@ on:
   pull_request:
     branches:
       - master
-    
+
 env:
   ENVIRONMENT: ${{ (github.ref == 'refs/heads/master' && 'prod') || (github.ref == 'refs/heads/develop' && 'dev') }}
 
 jobs:
-  deploy:
+  sam_deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,19 +36,44 @@ jobs:
           python -m pip install --upgrade pip
           pip install aws-sam-cli
 
-      - name: Build
+      - name: Set up Node.js
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 12
+
+      - name: Install npm packages
         run: |
+          npm install
+
+      - name: Lint and Formetter JS & Vue
+        run: |
+          npm run lint
+          npm run lintfix
+
+      - name: Build Nuxt
+        run: |
+          npm run build
+
+      - name: Deploy Static Assets to S3
+        run: |
+          aws s3 sync .nuxt/dist/client s3://localing-$ENVIRONMENT-static-assets/_nuxt --delete
+          aws s3 sync nuxt-app/static s3://localing-$ENVIRONMENT-static-assets/static --delete
+
+      - name: Build by SAM
+        run: |
+          cp -r .nuxt/dist/server/* render/
+          cp nuxt.config.js render/
           sam build
 
-      - name: Packaging
+      - name: Packaging by SAM
         run: |
           sam package \
             --template-file template.yml \
             --s3-bucket ${{ secrets.CFN_TEMPLATES_BUCKET }} \
             --s3-prefix ssr-api-$ENVIRONMENT \
             --output-template-file deploy.yml
-             
-      - name: Deploy
+   
+      - name: Deploy by SAM
         run: |
           sam deploy \
             --template-file deploy.yml \
@@ -57,3 +82,4 @@ jobs:
             --parameter-overrides \
                 Environment=$ENVIRONMENT \
                 CFSSLCertificateId=${{ secrets.CFSSL_CERTIFICATE_ID }}
+          
