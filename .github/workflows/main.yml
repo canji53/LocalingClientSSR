@@ -41,12 +41,9 @@ jobs:
         with:
           node-version: 12
 
-      - name: Install npm packages for Nuxt App
-        run: |
-          npm install
-
       - name: Lint and Formetter JS & Vue
         run: |
+          npm install
           npm run lint
           npm run lintfix
 
@@ -66,10 +63,19 @@ jobs:
           cd ..
           find . | xargs touch
 
-      - name: Build by SAM
+      - name: Install npm package for dependencies (not dev)
         run: |
+          rm -rf node_modules
+          npm install --production
+
+      - name: Copy to lambda for requirement packages
+        run: |
+          cp -r node_modules render/
           cp -r .nuxt/dist/server/* render/
           cp nuxt.config.js render/
+
+      - name: Build by SAM
+        run: |
           sam build
 
       - name: Packaging by SAM
