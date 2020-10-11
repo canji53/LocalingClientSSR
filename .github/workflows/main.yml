@@ -12,7 +12,7 @@ env:
   ENVIRONMENT: ${{ (github.ref == 'refs/heads/master' && 'prod') || (github.ref == 'refs/heads/develop' && 'dev') }}
 
 jobs:
-  sam_deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,7 +41,7 @@ jobs:
         with:
           node-version: 12
 
-      - name: Install npm packages
+      - name: Install npm packages for Nuxt App
         run: |
           npm install
 
@@ -58,6 +58,11 @@ jobs:
         run: |
           aws s3 sync .nuxt/dist/client s3://localing-$ENVIRONMENT-static-assets/_nuxt --delete
           aws s3 sync nuxt-app/static s3://localing-$ENVIRONMENT-static-assets/static --delete
+
+      - name: Install npm packages for Lambda Layer
+        run: |
+          cd .layer/nodejs
+          npm install
 
       - name: Build by SAM
         run: |
