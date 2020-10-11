@@ -51,7 +51,7 @@ Resources:
       CodeUri: render/
       Handler: app.lambdaHandler
       Layers:
-        - !Ref ServerlessLambdaLayer
+        - !Ref LambdaLayer
       Timeout: 10
       MemorySize: 256
       Events:
