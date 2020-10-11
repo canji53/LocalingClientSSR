@@ -52,7 +52,7 @@ jobs:
 
       - name: Build Nuxt
         run: |
-          npm run build
+          npm run build:$ENVIRONMENT
 
       - name: Deploy Static Assets to S3
         run: |
@@ -72,7 +72,7 @@ jobs:
             --s3-bucket ${{ secrets.CFN_TEMPLATES_BUCKET }} \
             --s3-prefix ssr-api-$ENVIRONMENT \
             --output-template-file deploy.yml
-   
+
       - name: Deploy by SAM
         run: |
           sam deploy \
@@ -82,4 +82,3 @@ jobs:
             --parameter-overrides \
                 Environment=$ENVIRONMENT \
                 CFSSLCertificateId=${{ secrets.CFSSL_CERTIFICATE_ID }}
-          
