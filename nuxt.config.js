@@ -237,4 +237,9 @@ export default {
       }
     },
   },
+  render: {
+    compressor: (req, res, next) => {
+      next()
+    },
+  },
 }
