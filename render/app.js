@@ -23,7 +23,7 @@ async function start() {
 }
 
 let server = undefined
-exports.lambdahandler = (event, context) => {
+exports.handler = (event, context) => {
   start().then((app) => {
     if (server === undefined) {
       server = awsServerlessExpress.createServer(app)
