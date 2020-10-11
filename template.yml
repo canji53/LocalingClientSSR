@@ -53,30 +53,30 @@ Resources:
         - nodejs12.x
       RetentionPolicy: Delete
 
-  RenderFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${ServiceName}-${Environment}-server-side-render
-      CodeUri: render/
-      Handler: app.handler
-      Layers:
-        - !Ref RenderLambdaLayer
-        - !Ref NuxtLambdaLayer
-      Timeout: 10
-      MemorySize: 256
-      Events:
-        RenderEvent:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ServerlessApi
-            Path: /
-            Method: GET
-        RenderProxyEvent:
-          Type: Api
-          Properties:
-            RestApiId: !Ref ServerlessApi
-            Path: /{proxy+}
-            Method: GET
+  # RenderFunction:
+  #   Type: AWS::Serverless::Function
+  #   Properties:
+  #     FunctionName: !Sub ${ServiceName}-${Environment}-server-side-render
+  #     CodeUri: render/
+  #     Handler: app.handler
+  #     Layers:
+  #       - !Ref RenderLambdaLayer
+  #       - !Ref NuxtLambdaLayer
+  #     Timeout: 10
+  #     MemorySize: 256
+  #     Events:
+  #       RenderEvent:
+  #         Type: Api
+  #         Properties:
+  #           RestApiId: !Ref ServerlessApi
+  #           Path: /
+  #           Method: GET
+  #       RenderProxyEvent:
+  #         Type: Api
+  #         Properties:
+  #           RestApiId: !Ref ServerlessApi
+  #           Path: /{proxy+}
+  #           Method: GET
 
   StaticAssetsBucket:
     Type: AWS::S3::Bucket
