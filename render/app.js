@@ -14,7 +14,7 @@ app.use(
   "/_nuxt",
   express.static(path.join(__dirname, ".nuxt", "dist", "client"))
 )
-app.use("/static", express.static(path.join(__dirname, "app", "static")))
+app.use("/static", express.static(path.join(__dirname, "static")))
 
 async function start() {
   const nuxt = await loadNuxt("start")
