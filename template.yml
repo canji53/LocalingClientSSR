@@ -56,7 +56,7 @@ Resources:
   RenderFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub ${ServiceName}-${Environment}-server-side-render
+      FunctionName: !Sub ${ServiceName}-${Environment}-server-side-rendering
       CodeUri: render/
       Handler: app.handler
       Layers:
