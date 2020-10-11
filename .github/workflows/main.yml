@@ -75,7 +75,8 @@ jobs:
 
       - name: Copy to lambda for requirement files
         run: |
-          rsync -Rr .nuxt/dist render/
+          rsync -Rr .nuxt render/
+          rsync -Rr nuxt-app render/
           rsync nuxt.config.js render/
 
       - name: Build by SAM
