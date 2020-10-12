@@ -104,9 +104,9 @@ jobs:
       - name: Delete develop cloudfront cache
         if: github.ref == 'refs/heads/develop'
         run: |
-          aws cloudfront create-invalidation --distribution-id ${{ DEV_CLOUDFRONT_ID }} --paths '/*'
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.DEV_CLOUDFRONT_ID }} --paths '/*'
 
       - name: Delete production cloudfront cache
         if: github.ref == 'refs/heads/master'
         run: |
-          aws cloudfront create-invalidation --distribution-id ${{ PROD_CLOUDFRONT_ID }} --paths '/*'
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.PROD_CLOUDFRONT_ID }} --paths '/*'
