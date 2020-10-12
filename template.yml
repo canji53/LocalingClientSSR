@@ -178,7 +178,7 @@ Resources:
               Cookies:
                 Forward: none
               QueryString: true
-          - PathPattern: 'static/*'
+          - PathPattern: 'assets/*'
             TargetOriginId: !Sub S3origin-${StaticAssetsBucket}
             ViewerProtocolPolicy: redirect-to-https
             AllowedMethods:
