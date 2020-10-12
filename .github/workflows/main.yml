@@ -53,8 +53,8 @@ jobs:
 
       - name: Deploy Static Assets to S3
         run: |
+          aws s3 sync nuxt-app/static s3://localing-$ENVIRONMENT-static-assets --delete
           aws s3 sync .nuxt/dist/client s3://localing-$ENVIRONMENT-static-assets/_nuxt --delete
-          aws s3 sync nuxt-app/static s3://localing-$ENVIRONMENT-static-assets/static --delete
 
       - name: Install npm packages for Render Lambda Layer
         run: |
