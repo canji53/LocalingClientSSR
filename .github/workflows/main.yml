@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: 3.7
 
-      - name: Install SAM
+      - name: Install sam
         run: |
           python -m pip install --upgrade pip
           pip install aws-sam-cli
@@ -41,34 +41,34 @@ jobs:
         with:
           node-version: 12
 
-      - name: Lint and Formetter JS & Vue
+      - name: Linter and Formetter JS and Vue
         run: |
           npm install
           npm run lint
           npm run lintfix
 
-      - name: Build Nuxt
+      - name: Build Nuxt App
         run: |
           npm run build:$ENVIRONMENT
 
-      - name: Deploy Static Assets to S3
+      - name: Deploy static assets to S3
         run: |
           aws s3 sync nuxt-app/static s3://localing-$ENVIRONMENT-static-assets --delete
           aws s3 sync .nuxt/dist/client s3://localing-$ENVIRONMENT-static-assets/_nuxt --delete
 
-      - name: Install npm packages for Render Lambda Layer
+      - name: Install npm packages for render lambda layer
         run: |
           rsync render/package.json .layer/render/nodejs
           cd .layer/render/nodejs
           npm install --production
-      
-      - name: Install npm packages for Nuxt Lambda Layer
+
+      - name: Install npm packages for nuxt lambda layer
         run: |
           rsync package.json .layer/nuxt/nodejs
           cd .layer/nuxt/nodejs
           npm install --production
 
-      - name: To avoid ZIP 1980 error
+      - name: Avoid ZIP 1980 error
         run: |
           cd .layer
           find . | xargs touch
@@ -100,3 +100,13 @@ jobs:
             --parameter-overrides \
                 Environment=$ENVIRONMENT \
                 CFSSLCertificateId=${{ secrets.CFSSL_CERTIFICATE_ID }}
+
+      - name: Delete develop cloudfront cache
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ DEV_CLOUDFRONT_ID }} --paths '/*'
+
+      - name: Delete production cloudfront cache
+        if: github.ref == 'refs/heads/master'
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ PROD_CLOUDFRONT_ID }} --paths '/*'
