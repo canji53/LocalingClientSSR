@@ -161,7 +161,7 @@ Resources:
             QueryString: true
         # Static S3 Behavior
         CacheBehaviors:
-          - PathPattern: '/_nuxt/*'
+          - PathPattern: '_nuxt/*'
             TargetOriginId: !Sub S3origin-${StaticAssetsBucket}
             ViewerProtocolPolicy: redirect-to-https
             AllowedMethods:
@@ -178,7 +178,7 @@ Resources:
               Cookies:
                 Forward: none
               QueryString: true
-          - PathPattern: '/static/*'
+          - PathPattern: 'static/*'
             TargetOriginId: !Sub S3origin-${StaticAssetsBucket}
             ViewerProtocolPolicy: redirect-to-https
             AllowedMethods:
