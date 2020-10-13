@@ -1,15 +1,14 @@
 name: Deployment for Localing SSR Nuxt App.
 
 on:
-  push:
-    branches:
-      - develop
   pull_request:
     branches:
       - master
+      - develop
+    types: [closed]
 
 env:
-  ENVIRONMENT: ${{ (github.ref == 'refs/heads/master' && 'prod') || (github.ref == 'refs/heads/develop' && 'dev') }}
+  ENVIRONMENT: ${{ (github.base_ref == 'master' && 'prod') || (github.base_ref == 'develop' && 'dev') }}
 
 jobs:
   deploy:
@@ -88,14 +87,14 @@ jobs:
           sam package \
             --template-file template.yml \
             --s3-bucket ${{ secrets.CFN_TEMPLATES_BUCKET }} \
-            --s3-prefix ssr-api-$ENVIRONMENT \
+            --s3-prefix client-ssr-$ENVIRONMENT \
             --output-template-file deploy.yml
 
       - name: Deploy by SAM
         run: |
           sam deploy \
             --template-file deploy.yml \
-            --stack-name localing-$ENVIRONMENT-ssr-api \
+            --stack-name localing-$ENVIRONMENT-client-ssr \
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides \
                 Environment=$ENVIRONMENT \
