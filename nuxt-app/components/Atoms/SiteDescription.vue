@@ -17,8 +17,7 @@ export default {
 
 <style lang="scss" scoped>
 .siteDescription {
-  line-height: 11px;
-  font-size: 11px;
+  font-size: $small-font-size;
   color: $base-color;
 }
 </style>

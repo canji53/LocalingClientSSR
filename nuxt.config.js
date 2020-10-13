@@ -1,17 +1,20 @@
 // 環境変数周り
-const subDomain =
-  process.env.ENVIRONEMNT === "prod" ? "www" : process.env.ENVIRONEMNT
+let environment = process.env.ENVIRONEMNT
+const subDomain = environment === "prod" ? "www" : environment // prodの場合は、wwwがサブドメイン
 const baseUrl =
-  process.env.ENVIRONEMNT !== "prod"
+  environment === "local"
     ? "http://localhost:3000"
     : `https://${subDomain}.localing.ml`
+environment = environment === "local" ? "dev" : environment // localの場合は、devを環境変数に
 
-const srcDir = "nuxt-app" // nuxtソースのディレクトリ
+// nuxtソースのディレクトリ
+const srcDir = "nuxt-app"
 
 // メタタグ変数
 const lang = "ja"
 const siteName = "ローカりんぐ"
-const siteDescription = ""
+const siteDescription =
+  "ローカりんぐは、地方で活躍されているローカルなメディアやクリエイターの方々のステキで面白い多種多様なコンテンツをコレクト（収集）して、レコメンド（おすすめ）することを目的としてWEBメディアです。"
 const siteKeywords = "LocalMedia"
 const siteAuthor = "Canji"
 const siteThemeColor = "#86C166"
@@ -183,13 +186,14 @@ export default {
     ],
   },
   env: {
-    ENVIRONEMNT: process.env.ENVIRONEMNT,
+    ENVIRONEMNT: environment,
     GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   },
   css: ["ress"],
   plugins: [
-    { src: "plugins/day.js", ssr: true },
-    { src: "plugins/windowSize.js", ssr: true },
+    { src: "@/plugins/day.js", ssr: true },
+    { src: "@/plugins/windowSize.js", ssr: true },
+    { src: "@/plugins/ga.js", ssr: true },
   ],
   components: true,
   buildModules: ["@nuxtjs/eslint-module"],
