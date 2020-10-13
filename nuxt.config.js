@@ -184,6 +184,7 @@ export default {
   },
   env: {
     ENVIRONEMNT: process.env.ENVIRONEMNT,
+    GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   },
   css: ["ress"],
   plugins: [
