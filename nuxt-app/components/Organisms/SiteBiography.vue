@@ -5,7 +5,6 @@
       :description="description"
       class="siteBiography__description"
     />
-    <SiteSns class="siteBiography__sns" />
   </section>
 </template>
 
