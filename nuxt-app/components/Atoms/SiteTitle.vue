@@ -20,12 +20,19 @@ export default {
 
 <style lang="scss" scoped>
 .siteTitle {
-  line-height: 20px;
+  line-height: $large-font-size;
 
   & > h1 {
-    line-height: 20px;
-    font-size: 20px;
+    line-height: $large-font-size;
+    font-size: $large-font-size;
     color: $base-color;
+  }
+
+  @include max-screen($column3-width) {
+    & > h1 {
+      line-height: $medium-font-size;
+      font-size: $medium-font-size;
+    }
   }
 }
 </style>

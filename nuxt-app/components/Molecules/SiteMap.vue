@@ -37,6 +37,13 @@ export default {
         font-size: $base-font-size;
         color: $base-color;
       }
+
+      @include max-screen($column3-width) {
+        & > a {
+          line-height: $small-font-size;
+          font-size: $small-font-size;
+        }
+      }
     }
   }
 }
