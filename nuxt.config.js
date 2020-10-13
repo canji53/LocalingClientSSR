@@ -190,8 +190,9 @@ export default {
   },
   css: ["ress"],
   plugins: [
-    { src: "plugins/day.js", ssr: true },
-    { src: "plugins/windowSize.js", ssr: true },
+    { src: "@/plugins/day.js", ssr: true },
+    { src: "@/plugins/windowSize.js", ssr: true },
+    { src: "@/plugins/ga.js", ssr: true },
   ],
   components: true,
   buildModules: ["@nuxtjs/eslint-module"],
