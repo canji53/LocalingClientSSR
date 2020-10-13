@@ -17,7 +17,6 @@ export default {
 
 <style lang="scss" scoped>
 .mediaMunicipalities {
-  line-height: 10px;
   font-size: 10px;
   color: $base-color;
 }
