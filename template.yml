@@ -62,7 +62,7 @@ Resources:
       Layers:
         - !Ref RenderLambdaLayer
         - !Ref NuxtLambdaLayer
-      Timeout: 10
+      Timeout: 30
       MemorySize: 256
       Events:
         RenderEvent:
