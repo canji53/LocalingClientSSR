@@ -13,7 +13,8 @@ const srcDir = "nuxt-app"
 // メタタグ変数
 const lang = "ja"
 const siteName = "ローカりんぐ"
-const siteDescription = ""
+const siteDescription =
+  "ローカりんぐは、地方で活躍されているローカルなメディアやクリエイターの方々のステキで面白い多種多様なコンテンツをコレクト（収集）して、レコメンド（おすすめ）することを目的としてWEBメディアです。"
 const siteKeywords = "LocalMedia"
 const siteAuthor = "Canji"
 const siteThemeColor = "#86C166"
