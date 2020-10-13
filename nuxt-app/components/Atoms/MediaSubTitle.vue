@@ -31,6 +31,7 @@ export default {
   & > h2 {
     line-height: 16px;
     font-size: 16px;
+    font-weight: normal;
     color: $base-color;
   }
 }
