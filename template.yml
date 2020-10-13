@@ -47,7 +47,7 @@ Resources:
   NuxtLambdaLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: !Sub ${ServiceName}-clinet-{Environment}-nuxt-layer
+      LayerName: !Sub ${ServiceName}-clinet-${Environment}-nuxt-layer
       ContentUri: .layer/nuxt
       CompatibleRuntimes:
         - nodejs12.x
