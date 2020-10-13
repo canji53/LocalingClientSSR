@@ -30,6 +30,7 @@ export default {
 .contactFinishPage {
   max-width: 600px;
   margin: auto;
+  padding: 40px 0;
   display: flex;
   flex-flow: column nowrap;
 
