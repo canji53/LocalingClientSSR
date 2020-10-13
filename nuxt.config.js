@@ -1,12 +1,14 @@
 // 環境変数周り
-const subDomain =
-  process.env.ENVIRONEMNT === "prod" ? "www" : process.env.ENVIRONEMNT
+let environment = process.env.ENVIRONEMNT
+const subDomain = environment === "prod" ? "www" : environment // prodの場合は、wwwがサブドメイン
 const baseUrl =
-  process.env.ENVIRONEMNT !== "prod"
+  environment === "local"
     ? "http://localhost:3000"
     : `https://${subDomain}.localing.ml`
+environment = environment === "local" ? "dev" : environment // localの場合は、devを環境変数に
 
-const srcDir = "nuxt-app" // nuxtソースのディレクトリ
+// nuxtソースのディレクトリ
+const srcDir = "nuxt-app"
 
 // メタタグ変数
 const lang = "ja"
@@ -183,7 +185,7 @@ export default {
     ],
   },
   env: {
-    ENVIRONEMNT: process.env.ENVIRONEMNT,
+    ENVIRONEMNT: environment,
     GA_TRACKING_ID: process.env.GA_TRACKING_ID,
   },
   css: ["ress"],

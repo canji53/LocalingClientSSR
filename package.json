@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env ENVIRONEMNT=dev nuxt",
+    "dev": "cross-env ENVIRONEMNT=local nuxt",
     "build": "nuxt build",
     "build:analyze": "nuxt build --analyze",
     "build:dev": "cross-env ENVIRONEMNT=dev npm run build",
