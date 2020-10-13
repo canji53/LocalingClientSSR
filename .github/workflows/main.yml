@@ -87,14 +87,14 @@ jobs:
           sam package \
             --template-file template.yml \
             --s3-bucket ${{ secrets.CFN_TEMPLATES_BUCKET }} \
-            --s3-prefix client-ssr-$ENVIRONMENT \
+            --s3-prefix client-$ENVIRONMENT-ssr \
             --output-template-file deploy.yml
 
       - name: Deploy by SAM
         run: |
           sam deploy \
             --template-file deploy.yml \
-            --stack-name localing-$ENVIRONMENT-client-ssr \
+            --stack-name localing-client-$ENVIRONMENT-ssr \
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides \
                 Environment=$ENVIRONMENT \
