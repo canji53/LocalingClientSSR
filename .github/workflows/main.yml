@@ -9,6 +9,7 @@ on:
 
 env:
   ENVIRONMENT: ${{ (github.base_ref == 'master' && 'prod') || (github.base_ref == 'develop' && 'dev') }}
+  SUB_DOMAIN: ${{ (github.base_ref == 'master' && 'www') || (github.base_ref == 'develop' && 'dev') }}
 
 jobs:
   deploy:
@@ -93,6 +94,7 @@ jobs:
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides \
                 Environment=$ENVIRONMENT \
+                SubDomain=$SUB_DOMAIN \
                 CFSSLCertificateId=${{ secrets.CFSSL_CERTIFICATE_ID }}
 
       - name: Deploy static assets to S3
@@ -101,11 +103,11 @@ jobs:
           aws s3 sync .nuxt/dist/client s3://localing-clinet-$ENVIRONMENT-static-assets/_nuxt --delete
 
       - name: Delete develop cloudfront cache
-        if: github.ref == 'refs/heads/develop'
+        if: github.base_ref == 'develop'
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.DEV_CLOUDFRONT_ID }} --paths '/*'
 
       - name: Delete production cloudfront cache
-        if: github.ref == 'refs/heads/master'
+        if: github.base_ref == 'master'
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ secrets.PROD_CLOUDFRONT_ID }} --paths '/*'

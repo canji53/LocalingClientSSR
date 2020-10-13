@@ -11,7 +11,10 @@ Parameters:
   Environment:
     Type: String
     Default: dev
-  NakedDomainName:
+  SubDomain:
+    Type: String
+    Default: dev
+  NakedDomain:
     Type: String
     Default: localing.ml
   CFSSLCertificateId:
@@ -118,7 +121,7 @@ Resources:
         # Generail - Distribution Settings
         PriceClass: PriceClass_All
         Aliases:
-          - !Sub ${Environment}.${NakedDomainName}
+          - !Sub ${SubDomain}.${NakedDomain}
         ViewerCertificate:
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2019
