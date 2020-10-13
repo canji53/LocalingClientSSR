@@ -50,11 +50,6 @@ jobs:
         run: |
           npm run build:$ENVIRONMENT
 
-      - name: Deploy static assets to S3
-        run: |
-          aws s3 sync nuxt-app/static s3://localing-$ENVIRONMENT-static-assets --delete
-          aws s3 sync .nuxt/dist/client s3://localing-$ENVIRONMENT-static-assets/_nuxt --delete
-
       - name: Install npm packages for render lambda layer
         run: |
           rsync render/package.json .layer/render/nodejs
@@ -99,6 +94,11 @@ jobs:
             --parameter-overrides \
                 Environment=$ENVIRONMENT \
                 CFSSLCertificateId=${{ secrets.CFSSL_CERTIFICATE_ID }}
+
+      - name: Deploy static assets to S3
+        run: |
+          aws s3 sync nuxt-app/static s3://localing-$ENVIRONMENT-static-assets --delete
+          aws s3 sync .nuxt/dist/client s3://localing-$ENVIRONMENT-static-assets/_nuxt --delete
 
       - name: Delete develop cloudfront cache
         if: github.ref == 'refs/heads/develop'
