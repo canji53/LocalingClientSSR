@@ -97,8 +97,8 @@ jobs:
 
       - name: Deploy static assets to S3
         run: |
-          aws s3 sync nuxt-app/static s3://localing-$ENVIRONMENT-static-assets --delete
-          aws s3 sync .nuxt/dist/client s3://localing-$ENVIRONMENT-static-assets/_nuxt --delete
+          aws s3 sync nuxt-app/static s3://localing-clinet-$ENVIRONMENT-static-assets --delete
+          aws s3 sync .nuxt/dist/client s3://localing-clinet-$ENVIRONMENT-static-assets/_nuxt --delete
 
       - name: Delete develop cloudfront cache
         if: github.ref == 'refs/heads/develop'
