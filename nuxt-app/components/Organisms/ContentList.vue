@@ -81,9 +81,6 @@ export default {
     isLastEvaluatedKey() {
       return this.getLastEvaluatedKey() !== null
     },
-    isLoading() {
-      return this.getLoading()
-    },
   },
 }
 </script>
@@ -102,7 +99,7 @@ export default {
 
   &__loadButton {
     width: 50%;
-    margin: 10px 0;
+    margin: 40px 0;
     text-align: center;
 
     // contents < 504px; // スマホ対応
