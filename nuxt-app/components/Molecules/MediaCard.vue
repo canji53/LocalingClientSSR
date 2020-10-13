@@ -96,7 +96,11 @@ export default {
     align-items: flex-end;
 
     &__title {
-      margin-right: 8px;
+      margin: 4px 8px 4px 0;
+    }
+
+    &__subTitle {
+      margin: 4px 0;
     }
   }
 }
