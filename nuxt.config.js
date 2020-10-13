@@ -193,7 +193,7 @@ export default {
   plugins: [
     { src: "@/plugins/day.js", ssr: true },
     { src: "@/plugins/windowSize.js", ssr: true },
-    { src: "@/plugins/ga.js", ssr: true },
+    { src: "@/plugins/ga.js", mode: "client" },
   ],
   components: true,
   buildModules: ["@nuxtjs/eslint-module"],
