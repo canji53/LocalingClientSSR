@@ -4,7 +4,7 @@
 
 * [ローカりんぐ](https://www.loclaing.ml)のフロントソース
 * 全国のローカルメディアのコンテンツを収集して一覧化したサイト
-* Server Side Rendering (SSR) 構成だが、Lambda のコールドスタートを考慮できていないので初期表示が激遅 :innocent:
+* Server Side Rendering だが、Lambda のコールドスタートを考慮できていないので初期表示が激遅 :innocent:
 
 ## 関連リポジトリ
 
