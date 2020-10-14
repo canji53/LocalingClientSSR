@@ -7,6 +7,7 @@
 * Server Side Rendering (SSR) 構成だが、Lambda のコールドスタートを考慮できていないので初期表示が激遅 :innocent:
 
 ## 構成図
+
 ![ローカリングの構成図]()
 
 ## 特徴
