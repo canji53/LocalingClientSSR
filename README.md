@@ -6,18 +6,13 @@
 * 全国のローカルメディアのコンテンツを収集して一覧化したサイト
 * Server Side Rendering (SSR) 構成だが、Lambda のコールドスタートを考慮できていないので初期表示が激遅 :innocent:
 
+## 関連リポジトリ
+
+* [LocalingClientApi](https://github.com/canji53/LocalingClientApi) : ユーザーが操作する API 群
+
 ## 構成図
 
-![ローカリングの構成図]()
-
-## 特徴
-
-* Inoreader API がスクレイピング機能を担当し、そのデータを DynamoDB に吸収して、それらを一覧化して見せるとても単純なサイト
-* 個人開発ということもあり、低コストを実現するために Serverless を選択
-* 機能的には SSR ではなく Jamstack で十分だが、今後の機能開発の展望とやってみたいという理由で SSR を選択
-* Serverless + SSR + AWS から、API Gateway の Lambda 上で Express のミドルウェアとして Nuxt.js を公開
-* Serverless Framework (sls) で構築する文献が多いが、SAM に慣れているので、SAM と Github Actions (CI) で インフラコードとアプリケーションコードのビルド、デプロイを一元化
-* Nuxt.js を触る内にコンポーネント数が爆発したためオレオレで Atomic Desgin を導入
+![ローカリングの構成図](https://raw.githubusercontent.com/canji53/LocalingClientSSR/develop/.documents/diagram/Localing_Diagram.png)
 
 ## 技術スタック
 
@@ -29,6 +24,16 @@
 * AWS SAM, AWS CLI, CloudFormation
 * Jest, npm, Babel, ESLint, Prettier, pip
 * Git, GitHub, GitHub Actions
+
+## 特徴
+
+* Inoreader で RSS をスクレイピングし、そのデータを DynamoDB に吸収、一覧化して見せるとても単純なサイト
+* 個人開発ということもあり、低コストを実現するために Serverless (FaaS) を選択
+* 機能的には Jamstack で十分だが、今後の機能開発の展望とやってみたいという理由で SSR を選択
+* Serverless + SSR + AWS から、API Gateway の Lambda 上で Express のミドルウェアとして Nuxt.js を公開
+* Nuxt.js を触る内にコンポーネント数が爆発したためオレオレで Atomic Desgin を導入
+* スクレイピングを自前で用意すのは面倒だったため、ドキュメントが読み易かった Inoreader API で RSS を収集
+* Serverless Framework で構築する文献が多いが、SAM に慣れているので、SAM と Github Actions (CI) で インフラコードとアプリケーションコードのビルド、デプロイを一元化
 
 ## 反省点（今後の改善点）
 
