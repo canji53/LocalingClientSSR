@@ -11,7 +11,10 @@ Parameters:
   Environment:
     Type: String
     Default: dev
-  NakedDomainName:
+  SubDomain:
+    Type: String
+    Default: dev
+  NakedDomain:
     Type: String
     Default: localing.ml
   CFSSLCertificateId:
@@ -29,17 +32,26 @@ Resources:
   ServerlessApi:
     Type: AWS::Serverless::Api
     Properties:
-      Name: !Sub ${ServiceName}-${Environment}-ssr
+      Name: !Sub ${ServiceName}-clinet-${Environment}-ssr
       StageName: !Ref Environment
       OpenApiVersion: 3.0.2
       BinaryMediaTypes:
         - '*/*'
 
-  LambdaLayer:
+  RenderLambdaLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: !Sub ${ServiceName}-${Environment}-ssr-lambda-layer
-      ContentUri: .layer/
+      LayerName: !Sub ${ServiceName}-clinet-${Environment}-render
+      ContentUri: .layer/render
+      CompatibleRuntimes:
+        - nodejs12.x
+      RetentionPolicy: Delete
+
+  NuxtLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !Sub ${ServiceName}-clinet-${Environment}-nuxt
+      ContentUri: .layer/nuxt
       CompatibleRuntimes:
         - nodejs12.x
       RetentionPolicy: Delete
@@ -47,10 +59,13 @@ Resources:
   RenderFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub ${ServiceName}-${Environment}-server-side-render
+      FunctionName: !Sub ${ServiceName}-clinet-${Environment}-ssr-nuxt
       CodeUri: render/
-      Handler: app.lambdaHandler
-      Timeout: 10
+      Handler: app.handler
+      Layers:
+        - !Ref RenderLambdaLayer
+        - !Ref NuxtLambdaLayer
+      Timeout: 30
       MemorySize: 256
       Events:
         RenderEvent:
@@ -70,7 +85,7 @@ Resources:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
     Properties:
-      BucketName: !Sub ${ServiceName}-${Environment}-static-assets
+      BucketName: !Sub ${ServiceName}-clinet-${Environment}-static-assets
       PublicAccessBlockConfiguration:
         BlockPublicAcls: false
         BlockPublicPolicy: false
@@ -106,7 +121,7 @@ Resources:
         # Generail - Distribution Settings
         PriceClass: PriceClass_All
         Aliases:
-          - !Sub ${Environment}.${NakedDomainName}
+          - !Sub ${SubDomain}.${NakedDomain}
         ViewerCertificate:
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2019
@@ -149,24 +164,7 @@ Resources:
             QueryString: true
         # Static S3 Behavior
         CacheBehaviors:
-          - PathPattern: '/_nuxt/*'
-            TargetOriginId: !Sub S3origin-${StaticAssetsBucket}
-            ViewerProtocolPolicy: redirect-to-https
-            AllowedMethods:
-              - GET
-              - HEAD
-            CachedMethods:
-              - GET
-              - HEAD
-            DefaultTTL: 0
-            MaxTTL: 0
-            MinTTL: 0
-            Compress: true
-            ForwardedValues:
-              Cookies:
-                Forward: none
-              QueryString: true
-          - PathPattern: '/static/*'
+          - PathPattern: '*.png'
             TargetOriginId: !Sub S3origin-${StaticAssetsBucket}
             ViewerProtocolPolicy: redirect-to-https
             AllowedMethods:
@@ -183,3 +181,20 @@ Resources:
               Cookies:
                 Forward: none
               QueryString: false
+          - PathPattern: '_nuxt/*'
+            TargetOriginId: !Sub S3origin-${StaticAssetsBucket}
+            ViewerProtocolPolicy: redirect-to-https
+            AllowedMethods:
+              - GET
+              - HEAD
+            CachedMethods:
+              - GET
+              - HEAD
+            DefaultTTL: 0
+            MaxTTL: 0
+            MinTTL: 0
+            Compress: true
+            ForwardedValues:
+              Cookies:
+                Forward: none
+              QueryString: true

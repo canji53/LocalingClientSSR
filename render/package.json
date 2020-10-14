@@ -6,9 +6,16 @@
   "author": "Canji",
   "license": "MIT",
   "scripts": {
+    "test": "jest",
+    "test watch": "jest --watch"
   },
   "dependencies": {
+    "aws-serverless-express": "^3.3.8",
+    "express": "^4.17.1",
+    "nuxt": "^2.14.0"
   },
   "devDependencies": {
+    "aws-lambda-mock-context": "^3.2.1",
+    "jest": "^26.4.2"
   }
 }
