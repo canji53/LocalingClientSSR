@@ -12,11 +12,11 @@
 
 ## 構成図
 
-![ローカリングの構成図](https://raw.githubusercontent.com/canji53/LocalingClientSSR/develop/.documents/diagram/Localing_Diagram.png)
+![ローカリングの構成図](https://raw.githubusercontent.com/canji53/LocalingClientSSR/master/.documents/diagram/Localing_Diagram.png)
 
 ## 技術スタック
 
-* Serverless, Server Side Rendering (SSR), Atomic Desgin
+* Serverless, Server Side Rendering (SSR), Atomic Design
 * JavaScript, Python, Node.js
 * Express, Vue.js / Nuxt.js
 * Inoreader API, SendGrid API, Font Awesome
