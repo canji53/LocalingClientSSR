@@ -82,7 +82,7 @@ export default {
   &__media {
     margin: 2px 0;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     align-items: flex-start;
   }
 
