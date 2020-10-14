@@ -78,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 .mediaPrefectureList {
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   list-style-type: none;
 
   & > li {
