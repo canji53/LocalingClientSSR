@@ -8,7 +8,10 @@
         class="contentCard__mediaIcon"
       />
       <div class="contentCard__mediaDescription">
-        <MediaPrefectureList :prefecture-code-list="content.prefectureList" />
+        <MediaPrefectureList
+          :prefecture-code-list="content.prefectureList"
+          class="contentCard__mediaDescription__prefectureList"
+        />
         <ContentMediaTitle
           :media-title="content.mediaTitle"
           :media-url="content.mediaUrl"
@@ -94,6 +97,10 @@ export default {
     display: flex;
     flex-flow: column wrap;
     align-items: flex-start;
+
+    &__prefectureList {
+      margin-bottom: 2px;
+    }
   }
 
   &__thumbnail {
