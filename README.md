@@ -29,7 +29,7 @@
 
 * Inoreader で RSS をスクレイピング、そのデータを DynamoDB に吸収、一覧化して見せるとても単純なサイト
 * 個人開発ということもあり、低コストを実現するために Serverless (FaaS) を選定
-* 機能的には Jamstack で十分だが、今後の機能開発の展望とやってみたいという理由で SSR を選定
+* 機能的には SPA で十分だが、今後の機能開発の展望とやってみたいという理由で SSR を選定
 * Serverless + SSR + AWS から、API Gateway の Lambda 上で Express のミドルウェアとして Nuxt.js を公開
 * Nuxt.js を触る内にコンポーネント数が爆発したためオレオレで Atomic Desgin を導入
 * スクレイピングを自前で用意すのは面倒だったため、ドキュメントが読み易かった Inoreader API で RSS を収集
