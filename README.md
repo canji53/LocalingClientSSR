@@ -6,10 +6,6 @@
 * 全国のローカルメディアのコンテンツを収集して一覧化したサイト
 * Server Side Rendering ですが、Lambda のコールドスタートを考慮できていないので初期表示が激遅 :innocent:
 
-## 関連リポジトリ
-
-* [LocalingClientApi](https://github.com/canji53/LocalingClientApi) : ユーザーが操作する API 群
-
 ## 構成図
 
 ![ローカリングの構成図](https://raw.githubusercontent.com/canji53/LocalingClientSSR/master/.documents/image/diagram.png)
@@ -40,3 +36,7 @@
 * Lambda (コンテナ) をコールドスタートで運用しているので、SSR のメリットである初期表示時のスピード感が全くない、Warm Up は金銭的に厳しいため検討段階、、、単純にチューニングできていないだけ、、、
 * 管理画面を前提に設計したのですが、管理画面をローンチする体力が尽きてしまい、仕方なくクライアント（サイト）だけでもリリース。そのため、コンテンツ管理が生の API 経由なため非常に煩雑で困っている状況
 * Slack API 経由でコンテンツ管理ができないか検討中
+
+## 関連リポジトリ
+
+* [LocalingClientApi](https://github.com/canji53/LocalingClientApi) : ユーザーが操作する API 群
