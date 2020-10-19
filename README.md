@@ -12,7 +12,7 @@
 
 ## 構成図
 
-![ローカリングの構成図](https://raw.githubusercontent.com/canji53/LocalingClientSSR/master/.documents/diagram/Localing_Diagram.png)
+![ローカリングの構成図](https://raw.githubusercontent.com/canji53/LocalingClientSSR/master/.documents/image/diagram.png)
 
 ## 技術スタック
 
