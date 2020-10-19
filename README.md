@@ -4,6 +4,7 @@
 
 * [ローカりんぐ](https://www.loclaing.ml)のフロントソース
 * 全国のローカルメディアのコンテンツを収集して一覧化したサイト
+* 多分に Pinterest を意識したデザイン
 * Server Side Rendering ですが、Lambda のコールドスタートを考慮できていないので初期表示が激遅 :innocent:
 
 ## 画面例
