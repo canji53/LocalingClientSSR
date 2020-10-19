@@ -6,9 +6,13 @@
 * 全国のローカルメディアのコンテンツを収集して一覧化したサイト
 * Server Side Rendering ですが、Lambda のコールドスタートを考慮できていないので初期表示が激遅 :innocent:
 
+## 画面例
+
+![ローカりんぐの画面例](https://raw.githubusercontent.com/canji53/LocalingClientSSR/master/.documents/image/view.png)
+
 ## 構成図
 
-![ローカリングの構成図](https://raw.githubusercontent.com/canji53/LocalingClientSSR/master/.documents/image/diagram.png)
+![ローカりんぐの構成図](https://raw.githubusercontent.com/canji53/LocalingClientSSR/master/.documents/image/diagram.png)
 
 ## 技術スタック
 
