@@ -19,7 +19,7 @@
 
 * Serverless, Server Side Rendering (SSR), Atomic Design
 * JavaScript, Python, Node.js
-* Express, Vue.js / Nuxt.js
+* Express, Vue 2 / Nuxt.js
 * Inoreader API, SendGrid API, Font Awesome
 * AWS, API Gateway, Lambda, Lambda Layer, Lambda@Edge, DynamoDB, S3, CloudFront (OAI), IAM
 * AWS SAM, AWS CLI, CloudFormation
